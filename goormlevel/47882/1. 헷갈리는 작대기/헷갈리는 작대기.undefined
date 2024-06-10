@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+char_list = list(input())
+
+num1 = 0
+num2 = 0
+num3 = 0
+num4 = 0
+
+for character in char_list:
+	if character == '1':
+		num1 += 1
+	elif character == 'I':
+		num2 += 1
+	elif character == 'l':
+		num3 += 1
+	elif character == '|':
+		num4 += 1
+		
+print(num1)
+print(num2)
+print(num3)
+print(num4)
