@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+# input 받기
+jinwoo, sunwoo = map(int, input().split())
+d = int(input())
+
+for i in range(1, d + 1):
+	if i % 2:
+		half = (jinwoo // 2)
+		sunwoo += (half + (jinwoo % 2))
+		jinwoo = half
+	else:
+		half = (sunwoo // 2)
+		jinwoo += (half + (sunwoo % 2))
+		sunwoo = half
+
+print(str(jinwoo) + " " + str(sunwoo))
