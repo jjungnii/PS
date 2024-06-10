@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+t = int(input())
+
+result = 0
+
+for _ in range(t):
+	formula = list(input().split())
+	if formula[1] == "+":
+		result += (int(formula[0]) + int(formula[2]))
+	elif formula[1] == "-":
+		result += (int(formula[0]) - int(formula[2]))
+	elif formula[1] == "*":
+		result += (int(formula[0]) * int(formula[2]))
+	elif formula[1] == "/":
+		result += (int(formula[0]) // int(formula[2]))
+	
+print(result)
