@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+from copy import deepcopy
+
+n = int(input())
+park = []
+num_uncolored = 0
+for i in range(n):
+  row = list(map(int,input().split()))
+  park.append(row)
+  num_uncolored += sum(row)
+
+days = 0
+xs = [0, 0, -1, 1]
+ys = [1, -1, 0, 0]
+while num_uncolored > 0:
+  update = deepcopy(park)
+  for r in range(n):
+    for c in range(n):
+      if park[r][c] == 0:
+        for x, y in zip(xs, ys):
+          x, y = r + x, c +y 
+          if 0 <= x < n and 0 <= y < n:
+            if update[x][y] >= 1:
+              update[x][y] = update[x][y] - 1
+              num_uncolored -= 1
+  days += 1
+  park = update
+	
+print(days)
