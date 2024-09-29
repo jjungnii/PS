@@ -1,28 +1,28 @@
-from collections import deque
+n = int(input())
+color = [list(map(int, input().split())) for _ in range(n)]
 
-N = int(input())
-board = [list(map(int, input().split())) for _ in range(N)]
-queue = deque()
-cnt = [0, 0]
+white = 0
+blue = 0
 
-queue.append(((0, 0), N))
+def find_paper(x, y, n):
+    global white, blue
+    paper = color[x][y]
+    for i in range(x, x + n):
+        for j in range(y, y + n):
+            if paper != color[i][j]:
+                find_paper(x, y, n // 2)
+                find_paper(x + n // 2, y, n // 2)
+                find_paper(x, y + n // 2, n // 2)
+                find_paper(x + n // 2, y + n // 2, n // 2)
+                return
 
-while queue:
-    loc, length = queue.popleft()
-    y, x = loc[0], loc[1]
+    if paper == 0:
+        white += 1
+        return
+    else:
+        blue += 1
+        return
 
-    color = sum(sum(row[x:x + length]) for row in board[y:y + length])
-
-    if color == 0:
-        cnt[0] += 1
-    elif color == length ** 2:
-        cnt[1] += 1
-    elif length > 1:
-        new_length = length // 2
-        queue.append(((y, x), new_length))
-        queue.append(((y, x + new_length), new_length))
-        queue.append(((y + new_length, x), new_length))
-        queue.append(((y + new_length, x + new_length), new_length))
-
-print(cnt[0])
-print(cnt[1])
+find_paper(0, 0, n)
+print(white)
+print(blue)
